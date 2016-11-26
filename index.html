@@ -458,11 +458,33 @@ TypeError: type of argument b must be int; got str instead</code></pre>
 </section>
   </div>
   <div class="slide hidden  separator" id="slide-10">
+    <section class="slide-content"><h1 id="tipos-m-s-complejos">Tipos más complejos</h1>
+<h2 id="incluso-definidos-por-el-usuario">Incluso definidos por el usuario</h2>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-11">
+    <section class="slide-content"><h3 id="el-m-dulo-typing-">El módulo <code>typing</code></h3>
+<p><strong>Tiene tipos más complejos</strong></p>
+<p><em>Iterable</em></p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> Iterable
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">greet_all</span><span class="hljs-params">(names: Iterable[str])</span> -&gt; <span class="hljs-title">None</span>:</span>
+    <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> names:
+        print(<span class="hljs-string">'Hello, {}'</span>.format(name))</code></pre>
+<p><em>Tuple</em></p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> Tuple
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f</span><span class="hljs-params">(t: Tuple[int, str])</span> -&gt; <span class="hljs-title">None</span>:</span>
+    t = <span class="hljs-number">1</span>, <span class="hljs-string">'foo'</span>    <span class="hljs-comment"># OK</span>
+    t = <span class="hljs-string">'foo'</span>, <span class="hljs-number">1</span>    <span class="hljs-comment"># Type check error</span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden  separator" id="slide-12">
     <section class="slide-content"><h1 id="-gracias-">¡Gracias!</h1>
 <p><strong><a href="https://github.com/datosgobar/presentacion-tipado-estatico-python">https://github.com/datosgobar/presentacion-tipado-estatico-python</a></strong></p>
 </section>
   </div>
-  <div class="slide hidden author-slide" id="slide-11">
+  <div class="slide hidden author-slide" id="slide-13">
     <section class="slide-content"><div class="author">
   <h1 class="name">Equipo Datos Argentina</h1>
     <h3 class="twitter">

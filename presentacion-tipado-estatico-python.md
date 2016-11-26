@@ -128,6 +128,35 @@ TypeError: type of argument b must be int; got str instead
 ```
 
 -- separator
+# Tipos más complejos
+## Incluso definidos por el usuario
+
+--
+### El módulo `typing`
+
+**Tiene tipos más complejos**
+
+*Iterable*
+
+```python
+from typing import Iterable
+
+def greet_all(names: Iterable[str]) -> None:
+    for name in names:
+        print('Hello, {}'.format(name))
+```
+
+*Tuple*
+
+```python
+from typing import Tuple
+
+def f(t: Tuple[int, str]) -> None:
+    t = 1, 'foo'    # OK
+    t = 'foo', 1    # Type check error
+```
+
+-- separator
 # ¡Gracias!
 
 **https://github.com/datosgobar/presentacion-tipado-estatico-python**

@@ -14,4 +14,4 @@ Una nueva forma de tener tipos estáticos en python (PEP 484), usando una notaci
 
 * **`foo_py2.py`**: Ejemplo de type checking para correr con `mypy` en Python 2 (`mypy --py2 examples/foo_py2.py`)
 * **`foo_py3.py`**: Ejemplo de type checking para correr con `mypy` en Python 3 (`mypy examples/foo_py3.py`)
-* **Funciones anotadas (python 3).ipynb**: Ejemplo para correr en jupyter con `typeguard`.
+* **`Funciones anotadas (python 3).ipynb`**: Ejemplo para correr en jupyter con `typeguard`.
