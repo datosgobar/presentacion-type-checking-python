@@ -127,6 +127,9 @@ foo("arbol", "manzana")
 TypeError: type of argument b must be int; got str instead
 ```
 
+-- separator
+# ¡Gracias!
+
 
 
 
