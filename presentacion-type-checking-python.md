@@ -1,6 +1,7 @@
 title: Type checking en Python
 output: index.html
 controls: false
+progress: true
 style: style.css
 
 --
@@ -69,7 +70,7 @@ foo.__annotations__
 
 -- separator
 # Libs para type checking
-## De terceros
+## De terceros, no hay una **librería estándar**
 
 --
 ### `mypy` en Python 3
