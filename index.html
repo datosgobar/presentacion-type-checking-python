@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <title>¿Tipos estáticos en python?</title>
+  <title>Type checking en Python</title>
   <style type="text/css">
     body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -369,8 +369,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   </div>
 
   <div class="slide" id="slide-1">
-    <section class="slide-content"><h1 id="-tipos-est-ticos-en-python-">¿Tipos estáticos en python?</h1>
-<h2 id="hay-una-forma-de-tenerlos-">Hay una forma de tenerlos!</h2>
+    <section class="slide-content"><h1 id="type-checking-en-python">Type checking en Python</h1>
 </section>
   </div>
   <div class="slide hidden  separator" id="slide-2">
@@ -408,12 +407,23 @@ foo.__annotations__
 {<span class="hljs-string">'a'</span>: str, <span class="hljs-string">'b'</span>: int, <span class="hljs-string">'return'</span>: str}</code></pre>
 </section>
   </div>
-  <div class="slide hidden  separator" id="slide-6">
-    <section class="slide-content"><h1 id="hoy-hay-libs-de-terceros-para-type-checking">Hoy hay libs de terceros para type checking</h1>
-<h2 id="todav-a-no-hay-una-librer-a-est-ndar-que-lo-haga">Todavía no hay una <strong>librería estándar</strong> que lo haga</h2>
+  <div class="slide hidden" id="slide-6">
+    <section class="slide-content"><h3 id="type-hints-pep-484-2014-">Type Hints - PEP 484 (2014)</h3>
+<p><strong>Podríamos tipar sólo algunas variables</strong></p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span><span class="hljs-params">(a: str, b)</span> -&gt; <span class="hljs-title">str</span>:</span>
+    <span class="hljs-comment"># "b" puede ser cualquier cosa con un __str__</span>
+    <span class="hljs-keyword">return</span> a + str(b)
+
+foo.__annotations__
+{<span class="hljs-string">'a'</span>: str, <span class="hljs-string">'return'</span>: str}</code></pre>
 </section>
   </div>
-  <div class="slide hidden" id="slide-7">
+  <div class="slide hidden  separator" id="slide-7">
+    <section class="slide-content"><h1 id="libs-para-type-checking">Libs para type checking</h1>
+<h2 id="de-terceros">De terceros</h2>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-8">
     <section class="slide-content"><h3 id="-mypy-en-python-3"><code>mypy</code> en Python 3</h3>
 <p><code>pip install mypy-lang</code></p>
 <p><strong>Si tengo un script como este en <code>foo_py3.py</code>:</strong></p>
@@ -427,7 +437,7 @@ print(foo(<span class="hljs-string">"arbol"</span>, <span class="hljs-string">"m
 foo_py3.py:5: error: Argument 2 to &quot;foo&quot; has incompatible type &quot;str&quot;; expected &quot;int&quot;</code></pre>
 </section>
   </div>
-  <div class="slide hidden" id="slide-8">
+  <div class="slide hidden" id="slide-9">
     <section class="slide-content"><h3 id="-mypy-en-python-2"><code>mypy</code> en Python 2</h3>
 <p><strong>Con una sintaxis diferente, si tengo un script como este en <code>foo_py2.py</code>:</strong></p>
 <pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span><span class="hljs-params">(a, b)</span>:</span>  <span class="hljs-comment"># type: (str, int) -&gt; str</span>
@@ -440,7 +450,7 @@ foo_py3.py:5: error: Argument 2 to &quot;foo&quot; has incompatible type &quot;s
 foo_py2.py:5: error: Argument 2 to &quot;foo&quot; has incompatible type &quot;str&quot;; expected &quot;int&quot;</code></pre>
 </section>
   </div>
-  <div class="slide hidden" id="slide-9">
+  <div class="slide hidden" id="slide-10">
     <section class="slide-content"><h3 id="-typeguard-para-hacer-type-checking-en-el-int-rprete"><code>typeguard</code> para hacer type checking en el intérprete</h3>
 <pre><code>pip install typeguard</code></pre>
 <p><strong>Usando un decorador:</strong></p>
@@ -457,12 +467,12 @@ foo(<span class="hljs-string">"arbol"</span>, <span class="hljs-string">"manzana
 TypeError: type of argument b must be int; got str instead</code></pre>
 </section>
   </div>
-  <div class="slide hidden  separator" id="slide-10">
-    <section class="slide-content"><h1 id="tipos-m-s-complejos">Tipos más complejos</h1>
-<h2 id="incluso-definidos-por-el-usuario">Incluso definidos por el usuario</h2>
+  <div class="slide hidden  separator" id="slide-11">
+    <section class="slide-content"><h1 id="el-m-dulo-typing-">El módulo <code>typing</code></h1>
+<h2 id="soporte-para-type-checking-en-python-3">Soporte para type checking en Python 3</h2>
 </section>
   </div>
-  <div class="slide hidden" id="slide-11">
+  <div class="slide hidden" id="slide-12">
     <section class="slide-content"><h3 id="el-m-dulo-typing-">El módulo <code>typing</code></h3>
 <p><strong>Tiene tipos más complejos</strong></p>
 <p><em>Iterable</em></p>
@@ -479,22 +489,31 @@ TypeError: type of argument b must be int; got str instead</code></pre>
     t = <span class="hljs-string">'foo'</span>, <span class="hljs-number">1</span>    <span class="hljs-comment"># Type check error</span></code></pre>
 </section>
   </div>
-  <div class="slide hidden  separator" id="slide-12">
-    <section class="slide-content"><h1 id="-gracias-">¡Gracias!</h1>
-<p><strong><a href="https://github.com/datosgobar/presentacion-tipado-estatico-python">https://github.com/datosgobar/presentacion-tipado-estatico-python</a></strong></p>
+  <div class="slide hidden" id="slide-13">
+    <section class="slide-content"><h3 id="el-m-dulo-typing-">El módulo <code>typing</code></h3>
+<p><strong>Permite crear abstracciones convenientes</strong></p>
+<p><em>Un punto, un vector...</em></p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> Tuple, List
+
+Point = Tuple[float, float]
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">distance</span><span class="hljs-params">(point: Point)</span> -&gt; <span class="hljs-title">float</span>:</span> ...
+
+Vector = List[float]
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">scale</span><span class="hljs-params">(scalar: float, vector: Vector)</span> -&gt; <span class="hljs-title">Vector</span>:</span> ...</code></pre>
+<p><em>Una conexión a un servidor</em></p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> Dict, Tuple, List
+
+ConnectionOptions = Dict[str, str]
+Address = Tuple[str, int]
+Server = Tuple[Address, ConnectionOptions]
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">broadcast_message</span><span class="hljs-params">(message: str, servers: List[Server])</span> -&gt; <span class="hljs-title">None</span>:</span> ...</code></pre>
 </section>
   </div>
-  <div class="slide hidden author-slide" id="slide-13">
-    <section class="slide-content"><div class="author">
-  <h1 class="name">Equipo Datos Argentina</h1>
-    <h3 class="twitter">
-      <a href="http://twitter.com/@datosgobar">@datosgobar</a>
-    </h3>
-    <h3 class="url">
-      <a href="https://github.com/datosgobar/presentacion-tipado-estatico-python">https://github.com/datosgobar/presentacion-tipado-estatico-python</a>
-    </h3>
-</div>
-</section>
+  <div class="slide hidden  separator" id="slide-14">
+    <section class="slide-content"><h1 id="-gracias-">¡Gracias!</h1>
+<p align="center"><strong>@agustinbenassi</strong> de <strong>@datosgobar</strong></p>
+
+<p align="center"><strong><a href="https://github.com/datosgobar/presentacion-type-checking-python">https://github.com/datosgobar/presentacion-type-checking-python</a></strong></p></section>
   </div>
 
 

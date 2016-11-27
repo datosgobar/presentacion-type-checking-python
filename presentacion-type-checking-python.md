@@ -1,15 +1,10 @@
-title: ¿Tipos estáticos en python?
-author:
-  name: Equipo Datos Argentina
-  url: https://github.com/datosgobar/presentacion-tipado-estatico-python
-  twitter: datosgobar
+title: Type checking en Python
 output: index.html
 controls: false
 style: style.css
 
 --
-# ¿Tipos estáticos en python?
-## Hay una forma de tenerlos!
+# Type checking en Python
 
 -- separator
 # "Function Annotations"
@@ -58,9 +53,23 @@ foo.__annotations__
 {'a': str, 'b': int, 'return': str}
 ```
 
+--
+### Type Hints - PEP 484 (2014)
+
+**Podríamos tipar sólo algunas variables**
+
+```python
+def foo(a: str, b) -> str:
+    # "b" puede ser cualquier cosa con un __str__
+    return a + str(b)
+
+foo.__annotations__
+{'a': str, 'return': str}
+```
+
 -- separator
-# Hoy hay libs de terceros para type checking
-## Todavía no hay una **librería estándar** que lo haga
+# Libs para type checking
+## De terceros
 
 --
 ### `mypy` en Python 3
@@ -128,8 +137,8 @@ TypeError: type of argument b must be int; got str instead
 ```
 
 -- separator
-# Tipos más complejos
-## Incluso definidos por el usuario
+# El módulo `typing`
+## Soporte para type checking en Python 3
 
 --
 ### El módulo `typing`
@@ -156,10 +165,38 @@ def f(t: Tuple[int, str]) -> None:
     t = 'foo', 1    # Type check error
 ```
 
+--
+### El módulo `typing`
+
+**Permite crear abstracciones convenientes**
+
+*Un punto, un vector...*
+```python
+from typing import Tuple, List
+
+Point = Tuple[float, float]
+def distance(point: Point) -> float: ...
+
+Vector = List[float]
+def scale(scalar: float, vector: Vector) -> Vector: ...
+```
+
+*Una conexión a un servidor*
+```python
+from typing import Dict, Tuple, List
+
+ConnectionOptions = Dict[str, str]
+Address = Tuple[str, int]
+Server = Tuple[Address, ConnectionOptions]
+def broadcast_message(message: str, servers: List[Server]) -> None: ...
+```
+
 -- separator
 # ¡Gracias!
 
-**https://github.com/datosgobar/presentacion-tipado-estatico-python**
+<p align="center">**@agustinbenassi** de **@datosgobar**</p>
+
+<p align="center">**https://github.com/datosgobar/presentacion-type-checking-python**</p>
 
 
 
