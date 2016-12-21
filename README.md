@@ -1,6 +1,6 @@
 # presentacion-type-checking-python
 
-Una nueva forma de tener type checking en python (PEP 484), usando una notación vieja (PEP 3107).
+Una nueva forma de tener type checking en python (PEP 484), usando una notación vieja (PEP 3107) - PyConAR 2016.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
